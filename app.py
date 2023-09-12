@@ -2,7 +2,6 @@ from fastapi import FastAPI, Depends, HTTPException
 import models
 from database import engine, SessionLocal, get_db
 from sqlalchemy.orm import Session
-from fastapi.responses import RedirectResponse
 
 app = FastAPI()
 
