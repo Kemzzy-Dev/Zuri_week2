@@ -3,7 +3,7 @@ __pycache__/
 api/__pycache__/
 *.py[cod]
 *$py.class
-api/database.db
+database.db
 dockerfile
 
 # C extensions
