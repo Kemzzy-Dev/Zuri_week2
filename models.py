@@ -7,7 +7,7 @@ class Person(Base):
     __tablename__ = "person"
 
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, unique=True, index=True)
+    name = Column(String, index=True)
     age = Column(Integer)
     track = Column(String, default=True)
 

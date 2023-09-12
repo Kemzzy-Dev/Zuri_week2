@@ -8,27 +8,19 @@ app = FastAPI()
 
 models.Base.metadata.create_all(bind=engine)
 
+# To read a persons detail with the id of the person
+@app.get("/api/{id}")
+def index(id:int, db: Session = Depends(get_db)):
+    person = db.query(models.Person).filter(models.Person.id == id).first()
+    if person == None:
+        return HTTPException(status_code=404)
+    return person
 
-
-# redirect users to all page
-@app.get("/")
-def index():
-    return RedirectResponse(url='/api/add')
-
-# works too
-@app.get("/api/all")
-def index(db: Session = Depends(get_db)):
-    return db.query(models.Person).all()
-
-# Done
-@app.post("/api/add" )
-async def add(item: models.Item, db: Session = Depends(get_db)):
+# To create a new person data in the database
+@app.post("/api")
+def add(item: models.Item, db: Session = Depends(get_db)):
     person = models.Person()
 
-    # error checking
-    # if db.query(person).filter(models.Person.name == item.name).first():
-    #      raise HTTPException(status_code=400, detail="Item already exists")
-    
     person.name = item.name
     person.age = item.age
     person.track = item.track
@@ -41,33 +33,32 @@ async def add(item: models.Item, db: Session = Depends(get_db)):
         "message":"Added successfully!"
     }
 
-# Get person by name works
-@app.get("/api/{name}")
-def read(name:str, db: Session = Depends(get_db)):
-    person = db.query(models.Person).filter(models.Person.name == name).first()
-    return person
-
-# Done and works
-@app.put("/api/update/{name}")
-def update(name:str, item:models.Item,  db: Session = Depends(get_db)):
-    person = db.query(models.Person).filter(models.Person.name == name).first()
-
+# Update a persons data in the database
+@app.patch("/api/{id}")
+async def add(id:str, item: models.Item, db: Session = Depends(get_db)):
+    person = db.query(models.Person).filter(models.Person.id == id).first()
+    if person == None:
+        return HTTPException(status_code=404)
+    
     person.name = item.name
     person.age = item.age
     person.track = item.track
 
     db.add(person)
     db.commit()
+
     return {
         "success":"True",
         "message":"Updated successfully!"
     }
 
-# Works
-@app.delete("/api/delete/{name}")
-def delete(name:str, db: Session = Depends(get_db)):
-    person = db.query(models.Person).filter(models.Person.name == name).first()
-
+# Delete a persons data from the database
+@app.delete("/api/{id}")
+async def add(id:str, db: Session = Depends(get_db)):
+    person = db.query(models.Person).filter(models.Person.id == id).first()
+    if person == None:
+        return HTTPException(status_code=404)
+    
     db.delete(person)
     db.commit()
 
