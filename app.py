@@ -29,7 +29,8 @@ def add(item: models.Item, db: Session = Depends(get_db)):
 
     return {
         "success":"True",
-        "message":"Added successfully!"
+        "message":"Added successfully!",
+        "status":"200"
     }
 
 # Update a persons data in the database
@@ -48,7 +49,8 @@ async def add(id:str, item: models.Item, db: Session = Depends(get_db)):
 
     return {
         "success":"True",
-        "message":"Updated successfully!"
+        "message":"Updated successfully!",
+        "status":"200"
     }
 
 # Delete a persons data from the database
@@ -63,5 +65,6 @@ async def add(id:str, db: Session = Depends(get_db)):
 
     return {
         "success":"True",
-        "message":"Deleted successfully!"
+        "message":"Deleted successfully!",
+        "status":"200"
     }
