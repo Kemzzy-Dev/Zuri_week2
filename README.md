@@ -34,6 +34,8 @@ To run the FastAPI Person API on your local machine, follow these steps:
 4. Install the required Python packages:
     ```bash
     pip install -r requirements.txt
+    
+5. Change directory to api
 
 
 Usage
