@@ -48,23 +48,23 @@ Usage
 - To update a person's data by id: PATCH: http://localhost:8000/api/{id}
 - To delete a person by id: DELETE: http://localhost:8000/api/{id}
 
-### Example 1
+## Example 1
     POST: http://localhost:8000/api 
     JSON: {
         "name":"Paul",
         "age":"28",
         "track":"backend"
     }
-# Response 
+### Response 
     {
         "success":"True",
         "message":"Added successfully!"
     }
 
-### Example 2
+## Example 2
     GET: http://localhost:8000/api/3
 
-# Response
+### Response
     {
     "age": 32,
     "id": 3,
@@ -73,19 +73,19 @@ Usage
     }
 
 
-### API Endpoints
+## API Endpoints
 
-# POST /api
+### POST /api
     Use this endpoint to add new people to the database. Send a POST request with JSON data containing the person's information (e.g., name, age, track).
 
 
-# GET /api/{id}
+### GET /api/{id}
     Retrieve a person's information based on their unique id. Replace {id} in the URL with the person's actual id.
 
-# PATCH /api/{id}
+### PATCH /api/{id}
     Update a person's data by their id. Replace {id} in the URL with the person's actual id. Send a PUT request with JSON data containing the updated information.
 
-# DELETE /api/{id}
+### DELETE /api/{id}
     Delete a person's data based on the entered id. Replace {id} in the URL with the person's actual id.
 
 ### Acknowledgments
