@@ -2,10 +2,10 @@
 
 The FastAPI Person API is a web application that provides CRUD (Create, Read, Update, Delete) operations for managing information about people. It is built using FastAPI and SQLAlchemy and provides the following endpoints:
 
-- `http://localhost:8000/api`: Add new people to the database.
-- `http://localhost:8000/api/{id}`: Retrieve a person's information based on their unique id.
-- `http://localhost:8000/api/update/{id}`: Update a person's data by their id.
-- `http://localhost:8000/api/delete/{id}`: Delete a person's data based on the entered id.
+- `POST: http://localhost:8000/api`: Add new people to the database.
+- `GET: http://localhost:8000/api/{id}`: Retrieve a person's information based on their unique id.
+- `PATCH: http://localhost:8000/api/{id}`: Update a person's data by their id.
+- `DELETE: http://localhost:8000/api/{id}`: Delete a person's data based on the entered id.
 
 ## Getting Started
 
@@ -29,7 +29,9 @@ To run the FastAPI Person API on your local machine, follow these steps:
     ```bash
     cd your-repo
 
-3. Install the required Python packages:
+3. Create a virtualenv with any env tool of your choice
+
+4. Install the required Python packages:
     ```bash
     pip install -r requirements.txt
 
@@ -41,16 +43,41 @@ Usage
 
 2. Access the API using the provided endpoints:
 
-- To add a new person: http://localhost:8000/api
-- To get a person by id: http://localhost:8000/api/{id}
-- To update a person's data by id: http://localhost:8000/api/{id}
-- To delete a person by id: http://localhost:8000/api/{id}
+- To add a new person: POST: http://localhost:8000/api
+- To get a person by id: GET: http://localhost:8000/api/{id}
+- To update a person's data by id: PATCH: http://localhost:8000/api/{id}
+- To delete a person by id: DELETE: http://localhost:8000/api/{id}
+
+### Example 1
+    POST: http://localhost:8000/api 
+    JSON: {
+        "name":"Paul",
+        "age":"28",
+        "track":"backend"
+    }
+# Response 
+    {
+        "success":"True",
+        "message":"Added successfully!"
+    }
+
+### Example 2
+    GET: http://localhost:8000/api/3
+
+# Response
+    {
+    "age": 32,
+    "id": 3,
+    "name": "John Doe",
+    "track": "frontend"
+    }
 
 
 ### API Endpoints
 
 # POST /api
     Use this endpoint to add new people to the database. Send a POST request with JSON data containing the person's information (e.g., name, age, track).
+
 
 # GET /api/{id}
     Retrieve a person's information based on their unique id. Replace {id} in the URL with the person's actual id.
